@@ -21,6 +21,35 @@ services:
     build:
       context: ./client
     environment:
+      - CLIENT_ID=1
+      - HOST=server
+      - PORT=65432
+    stdin_open: true
+    tty: true
+    networks:
+      - cs-network
+    depends_on:
+      - server
+
+  client2:
+    build:
+      context: ./client
+    environment:
+      - CLIENT_ID=2
+      - HOST=server
+      - PORT=65432
+    stdin_open: true
+    tty: true
+    networks:
+      - cs-network
+    depends_on:
+      - server
+
+  client3:
+    build:
+      context: ./client
+    environment:
+      - CLIENT_ID=3
       - HOST=server
       - PORT=65432
     stdin_open: true

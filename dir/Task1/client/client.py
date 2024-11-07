@@ -216,10 +216,10 @@ class Client:
         2) Accepts user input and issue commands until exit.
         """
         client_socket, eof_token = self.initialize(self.host, self.port)
-        # client_folder="client"+os.getenv("ID",0)
-        # self.issue_mkdir("mkdir "+client_folder,client_socket, eof_token)
-        # self.issue_cd('cd '+client_folder, client_socket, eof_token)
-        # self.issue_ul('ul saphal.txt', client_socket, eof_token)
+        client_folder="client"+os.getenv("CLIENT_ID",0)
+        self.issue_mkdir("mkdir "+client_folder,client_socket, eof_token)
+        self.issue_cd('cd '+client_folder, client_socket, eof_token)
+        self.issue_ul('ul saphal.txt', client_socket, eof_token)
         while True:
             user_command = input("Please enter a valid command:")
             command = user_command.split()[0]
