@@ -6,6 +6,9 @@ import shutil
 from pathlib import Path
 import time
 import string
+import logging
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 
 class Server:
@@ -21,20 +24,21 @@ class Server:
 
         Note: Use ClientThread for each client connection.
         """
+        logging.info(f"Server started, listening on {self.host}:{self.port}")
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server_socket.bind((self.host, self.port))
         self.server_socket.listen()
-        print(f"Server listening on {self.host}:{self.port}")
         while True:
+            logging.info("Waiting for a new connection ...")
             eof_token = self.generate_random_eof_token()
             client_socket, client_address = self.server_socket.accept()
-            print(f"Accepted connection from {client_address}")
+            logging.info(f"Accepted connection from {client_address}")
             client_socket.sendall(str.encode(eof_token))
             try:
                 client_thread = ClientThread(self, client_socket, client_address, eof_token)
                 client_thread.start()
             except Exception as e:
-                print(f"Error: {e}")
+                logging.info(f"Error: {e}")
 
     def get_working_directory_info(self, working_directory) -> str:
         """
@@ -99,6 +103,7 @@ class Server:
         :param current_working_directory: string of current working directory
         :param directory_name: name of new sub directory
         """
+        logging.info(f"Creating directory {directory_name}")
         new_dir = Path(current_working_directory) / directory_name
         if new_dir.exists():
             raise FileExistsError(f"mkdir failed")
@@ -354,9 +359,8 @@ class ClientThread(Thread):
 
 
 def run_server():
-    HOST = "127.0.0.1"
-    PORT = 65432
-
+    HOST=os.getenv("HOST", "0.0.0.0")
+    PORT=int(os.getenv("PORT", 65432))
     server = Server(HOST, PORT)
     server.start()
 

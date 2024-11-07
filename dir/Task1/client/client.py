@@ -1,6 +1,8 @@
 import socket
 import os
+import logging
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 class Client:
     def __init__(self, host, port):
@@ -214,6 +216,10 @@ class Client:
         2) Accepts user input and issue commands until exit.
         """
         client_socket, eof_token = self.initialize(self.host, self.port)
+        # client_folder="client"+os.getenv("ID",0)
+        # self.issue_mkdir("mkdir "+client_folder,client_socket, eof_token)
+        # self.issue_cd('cd '+client_folder, client_socket, eof_token)
+        # self.issue_ul('ul saphal.txt', client_socket, eof_token)
         while True:
             user_command = input("Please enter a valid command:")
             command = user_command.split()[0]
@@ -246,9 +252,9 @@ class Client:
 
 ## Don't Modify Below ##
 def run_client():
-    HOST = "127.0.0.1"  # The server's hostname or IP address
-    PORT = 65432  # The port used by the server
-
+    HOST=os.getenv("HOST", "127.0.0.1")
+    PORT=int(os.getenv("PORT", 65432))
+    logging.info(f"Attempting to connect to {HOST}:{PORT}")
     client = Client(HOST, PORT)
     client.start()
 

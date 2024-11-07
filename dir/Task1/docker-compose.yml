@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  server:
+    build:
+      context: ./server
+    environment:
+      - HOST=0.0.0.0
+      - PORT=65432
+    ports:
+      - "65432:65432"
+#    healthcheck:
+#      test: [ "CMD", "nc", "-z", "localhost", "65432" ]
+#      interval: 10s
+#      retries: 5
+#      start_period: 10s
+    networks:
+      - cs-network
+
+  client1:
+    build:
+      context: ./client
+    environment:
+      - HOST=server
+      - PORT=65432
+    stdin_open: true
+    tty: true
+    networks:
+      - cs-network
+    depends_on:
+      - server
+
+networks:
+  cs-network:
+    driver: bridge
