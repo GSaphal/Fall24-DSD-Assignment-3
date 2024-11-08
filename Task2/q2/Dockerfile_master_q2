@@ -1,0 +1,19 @@
+# Use a Python 3.9 runtime with mpi4py installed
+FROM python:3.9-slim
+
+# Install MPICH for MPI support and Python packages
+RUN apt-get update && apt-get install -y mpich \
+    && pip install mpi4py pandas
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the Python script and dataset to the container
+COPY q2/q2_mpi.py /app/
+COPY ../Books_rating.csv /app/
+
+# Command to run the master node script with MPI
+CMD ["mpirun", "-np", "4", "python", "/app/q2_mpi.py"]
+
+#to keep the node running to view the IP PORT
+#CMD ["sh", "-c", "python /app/q2_mpi.py && tail -f /dev/null"]

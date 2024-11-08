@@ -1,0 +1,77 @@
+To build Docker Files:
+
+For q1:
+    docker build -t master_q1_image -f q1/Dockerfile_master .
+    docker build -t worker_q1_image -f q1/Dockerfile_worker .
+
+For q2:
+    docker build -t master_q2_image -f q2/Dockerfile_master_q2 .
+    docker build -t worker_q2_image -f q2/Dockerfile_worker_q2 .
+
+For q3:
+    docker build -t master_q3_image -f q3/Dockerfile_master_q3 .
+    docker build -t worker_q3_image -f q3/Dockerfile_worker_q3 .
+
+For q4:
+    docker build -t master_q4_image -f q4/Dockerfile_master_q4 .
+    docker build -t worker_q4_image -f q4/Dockerfile_worker_q4 .
+
+To create Docker Network:
+    docker network create mpi_network
+
+Run Containers for q1:
+    For Master:
+        docker run -d --network mpi_network --name master_q1_container master_q1_image
+
+    For Workers
+        docker run -d --network mpi_network --name worker_q1_1 worker_q1_image
+        docker run -d --network mpi_network --name worker_q1_2 worker_q1_image
+        docker run -d --network mpi_network --name worker_q1_3 worker_q1_image
+
+Run Containers for q2:
+    For Master:
+        docker run -d --network mpi_network --name master_q2_container master_q2_image
+
+    For Workers
+        docker run -d --network mpi_network --name worker_q2_1 worker_q2_image
+        docker run -d --network mpi_network --name worker_q2_2 worker_q2_image
+        docker run -d --network mpi_network --name worker_q2_3 worker_q2_image
+
+Run Containers for q3:
+    For Master:
+        docker run -d --network mpi_network --name master_q3_container master_q3_image
+
+    For Workers
+        docker run -d --network mpi_network --name worker_q3_1 worker_q3_image
+        docker run -d --network mpi_network --name worker_q3_2 worker_q3_image
+        docker run -d --network mpi_network --name worker_q3_3 worker_q3_image
+
+
+Run Containers for q4:
+    For Master:
+        docker run -d --network mpi_network --name master_q4_container master_q4_image
+
+    For Workers
+        docker run -d --network mpi_network --name worker_q4_1 worker_q4_image
+        docker run -d --network mpi_network --name worker_q4_2 worker_q4_image
+        docker run -d --network mpi_network --name worker_q4_3 worker_q4_image
+
+
+To get IP Address (For q1)
+    docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' master_q1_container
+    docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' worker_q1_1
+    docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' worker_q1_2
+    docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' worker_q1_3
+
+To get Ports (For q1)
+    docker inspect -f '{{.NetworkSettings.Ports}}' master_q1_container
+    docker inspect -f '{{.NetworkSettings.Ports}}' worker_q1_1
+    docker inspect -f '{{.NetworkSettings.Ports}}' worker_q1_2
+    docker inspect -f '{{.NetworkSettings.Ports}}' worker_q1_3
+
+To Find MPI Execution Results
+    docker logs master_q1_container
+    docker logs worker_q1_1
+    docker logs worker_q1_2
+    docker logs worker_q1_3
+

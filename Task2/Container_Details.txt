@@ -1,0 +1,88 @@
+Container Details for DSD 3rd Assignment
+
+1. Master Container - q1
+   - Container Name: master_q1_container
+   - IP Address: 172.18.0.2
+
+2. Worker Container 1 - q1
+   - Container Name: worker_q1_1
+   - IP Address: 172.18.0.3
+
+3. Worker Container 2 - q1
+   - Container Name: worker_q1_2
+   - IP Address: 172.18.0.4
+
+4. Worker Container 3 - q1
+   - Container Name: worker_q1_3
+   - IP Address: 172.18.0.5
+
+----------------------------------
+
+1. Master Container - q2
+   - Container Name: master_q2_container
+   - IP Address: 172.18.0.2
+   - Ports: No specific ports exposed
+
+2. Worker Container 1 - q2
+   - Container Name: worker_q2_1
+   - IP Address: 172.18.0.3
+   - Ports: No specific ports exposed
+
+3. Worker Container 2 - q2
+   - Container Name: worker_q2_2
+   - IP Address: 172.18.0.4
+   - Ports: No specific ports exposed
+
+4. Worker Container 3 - q2
+   - Container Name: worker_q2_3
+   - IP Address: 172.18.0.5
+   - Ports: No specific ports exposed
+
+------------------------
+
+## There is some issue with the q3 python file, its exiting when im trying to run
+
+1. Master Container - q3
+   - Container Name: master_q3_container
+   - IP Address: 
+   - Ports: No specific ports exposed
+
+2. Worker Container 1 - q3
+   - Container Name: worker_q3_1
+   - IP Address: 
+   - Ports: No specific ports exposed
+
+3. Worker Container 2 - q3
+   - Container Name: worker_q3_2
+   - IP Address: 
+   - Ports: No specific ports exposed
+
+4. Worker Container 3 - q3
+   - Container Name: worker_q3_3
+   - IP Address: 
+   - Ports: No specific ports exposed
+
+
+----------------------------
+
+
+1. Master Container - q4
+   - Container Name: master_q4_container
+   - IP Address: 172.18.0.2
+   - Ports: No specific ports exposed
+
+2. Worker Container 1 - q4
+   - Container Name: worker_q4_1
+   - IP Address: 172.18.0.3
+   - Ports: No specific ports exposed
+
+3. Worker Container 2 - q4
+   - Container Name: worker_q4_2
+   - IP Address: 172.18.0.4
+   - Ports: No specific ports exposed
+
+4. Worker Container 3 - q4
+   - Container Name: worker_q4_3
+   - IP Address: 172.18.0.5
+   - Ports: No specific ports exposed
+
